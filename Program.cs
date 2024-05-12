@@ -171,10 +171,11 @@ class Program
                 charSet += LowercaseChars;
                 charSet += UppercaseChars;
                 charSet += NumericChars;
-                useSpecial = true;
+                useSpecial = false;
                 useNumeric = true;
                 useUppercase = true;
                 useLowercase = true;
+
             }
 
             using (var rng = RandomNumberGenerator.Create())
@@ -192,11 +193,11 @@ class Program
             //await SendMessageWithDelay(message.Chat, $"Параметры пароля:\nСтрочные буквы {useLowercase}\nЗаглавные буквы {useUppercase}\nЦифры {useNumeric}\nСпециальные символы {useSpecial}");
             await SendMessageWithDelay(message.Chat, 
                 $"Параметры пароля:\n1. Длина: {length}\n"
-                + $"2. Строчные буквы: {(useLowercase ? "Да" : "Нет")}\n"
-                + $"3. Заглавные буквы: {(useUppercase ? "Да" : "Нет")}\n"
-                +$"4. Цифры: {(useNumeric ? "Да" : "Нет")}\n"
-                +$"5. Специальные символы: {(useSpecial ? "Да" : "Нет")}");
-            await SendMessageWithDelay(message.Chat, $"Пароль: {password}");
+                + $"2. Строчные буквы: {(useLowercase ? "\u2705" : "\u274C")}\n"
+                + $"3. Заглавные буквы: {(useUppercase ? "\u2705" : "\u274C")}\n"
+                +$"4. Цифры: {(useNumeric ? "\u2705" : "\u274C")}\n"
+                +$"5. Специальные символы: {(useSpecial ? "\u2705" : "\u274C")}");
+            await SendMessageWithDelay(message.Chat, $"Пароль:\n{password}");
             await SendMessageWithDelay(message.Chat, "Что бы сгенерировать новый пароль нажмите /start");
             //await SendMessageWithDelay(message.Chat, $"charSet: {charSet}");
             botState = 6;
